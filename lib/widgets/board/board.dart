@@ -4,10 +4,9 @@ import 'package:sudoko/widgets/cell/cell.dart';
 import 'package:sudoko/widgets/cell/cell_store.dart';
 import 'board_store.dart';
 
-final boardStore = new BoardStore();
-
 class Board extends StatelessWidget {
-  Board() {
+  final BoardStore boardStore;
+  Board(this.boardStore) {
     for (int r = 1; r <= 9; r++) {
       for (int c = 1; c <= 9; c++) {
         int cellIndex = (r - 1) * 9 + c - 1;

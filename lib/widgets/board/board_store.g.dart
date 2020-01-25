@@ -64,4 +64,14 @@ mixin _$BoardStore on _BoardStore, Store {
       _$_BoardStoreActionController.endAction(_$actionInfo);
     }
   }
+
+  @override
+  dynamic editSelectedCellValue(int newValue) {
+    final _$actionInfo = _$_BoardStoreActionController.startAction();
+    try {
+      return super.editSelectedCellValue(newValue);
+    } finally {
+      _$_BoardStoreActionController.endAction(_$actionInfo);
+    }
+  }
 }

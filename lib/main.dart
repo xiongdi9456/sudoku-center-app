@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sudoko/screens/game/game_store.dart';
 import 'package:sudoko/widgets/keypad/keypad.dart';
 import './widgets/cell/cell_store.dart';
 import './widgets/board/board.dart';
 
-final cellStore = CellStore(0,0,0);
+final cellStore = CellStore(0, 0, 0);
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+final gameStore = new GameStore();
+
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,14 +32,14 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                Board(),
-                Expanded(child:Keypad()),
-              ],
-            ),
-          )),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Board(gameStore.boardStore),
+            Expanded(child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
+          ],
+        ),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           cellStore.setValue(cellStore.value + 1);
@@ -45,5 +48,9 @@ class MyHomePage extends StatelessWidget {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  onNumberKeyTapped(int value) {
+    gameStore.boardStore.editSelectedCellValue(value);
   }
 }

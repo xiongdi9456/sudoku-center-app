@@ -17,4 +17,9 @@ abstract class _BoardStore with Store{
   selectCell(CellStore cellStore){
     this.selectedCell = new SelectedCellStore(cellStore.cellIndex, cellStore.rowIndex, cellStore.colIndex);
   }
+  @action
+  editSelectedCellValue(int newValue){
+    var selectedCellStore = this.cellStoreList[this.selectedCell.cellIndex];
+    selectedCellStore.setValue(newValue);
+  }
 }

@@ -14,31 +14,34 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(1, 1),
 ];
 
-List<Widget> _tiles = const <Widget>[
-   const NumberKey(1),
-   const NumberKey(2),
-   const NumberKey(3),
-   const NumberKey(4),
-   const NumberKey(5),
-   const NumberKey(6),
-   const NumberKey(7),
-   const NumberKey(8),
-   const NumberKey(9),
-   const NumberKey(0),
-];
+
 
 class Keypad extends StatelessWidget {
+  final void Function(int value) onNumberKeyTapped;
+  const Keypad({this.onNumberKeyTapped});
   @override
   Widget build(BuildContext context) {
     return Container(
         child: buildGridView());
   }
-
+  List<Widget> getButtonList(){
+    return <Widget>[
+       NumberKey(1, this.onNumberKeyTapped),
+       NumberKey(2, this.onNumberKeyTapped),
+       NumberKey(3, this.onNumberKeyTapped),
+       NumberKey(4, this.onNumberKeyTapped),
+       NumberKey(5, this.onNumberKeyTapped),
+       NumberKey(6, this.onNumberKeyTapped),
+       NumberKey(7, this.onNumberKeyTapped),
+       NumberKey(8, this.onNumberKeyTapped),
+       NumberKey(9, this.onNumberKeyTapped),
+    ];
+  }
   StaggeredGridView buildGridView() {
     return new StaggeredGridView.count(
     crossAxisCount: 5,
     staggeredTiles: _staggeredTiles,
-    children: _tiles,
+    children: getButtonList(),
     mainAxisSpacing: 4.0,
     crossAxisSpacing: 4.0,
     padding: const EdgeInsets.all(4.0),
