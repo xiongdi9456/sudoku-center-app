@@ -35,18 +35,15 @@ class MyHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            Board(gameStore.boardStore),
-            Expanded(child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
+            Flexible(
+              child: Board(gameStore.boardStore),
+              flex: 2,
+              fit: FlexFit.loose
+            ),
+            Flexible(child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
           ],
         ),
-      )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          cellStore.setValue(cellStore.value + 1);
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      )), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
