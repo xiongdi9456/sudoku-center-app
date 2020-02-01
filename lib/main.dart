@@ -36,9 +36,8 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Flexible(
-              child: Board(gameStore.boardStore),
+              child: AspectRatio(child: Board(gameStore.boardStore),aspectRatio: 1,),
               flex: 2,
-              fit: FlexFit.loose
             ),
             Flexible(child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
           ],
