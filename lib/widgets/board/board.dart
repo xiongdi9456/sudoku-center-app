@@ -1,17 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:sudoko/utils/sudoku_helper.dart';
 import 'package:sudoko/widgets/cell/cell.dart';
 import 'package:sudoko/widgets/cell/cell_store.dart';
 import 'board_store.dart';
 
 class Board extends StatelessWidget {
   final BoardStore boardStore;
+  final SudokoHelper sudokoHelper = new SudokoHelper();
   Board(this.boardStore) {
+    this.sudokoHelper.createBoard();
     for (int r = 1; r <= 9; r++) {
       for (int c = 1; c <= 9; c++) {
         int cellIndex = (r - 1) * 9 + c - 1;
-        boardStore.addCell(cellIndex, r, c, 0);
+        int value = this.sudokoHelper.matrix[r-1][c-1];
+        boardStore.addCell(cellIndex, r, c, value);
       }
     }
   }

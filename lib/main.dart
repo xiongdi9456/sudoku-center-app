@@ -4,7 +4,7 @@ import 'package:sudoko/widgets/keypad/keypad.dart';
 import './widgets/cell/cell_store.dart';
 import './widgets/board/board.dart';
 
-final cellStore = CellStore(0, 0, 0);
+final cellStore = CellStore(0, 0, 0, 0);
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

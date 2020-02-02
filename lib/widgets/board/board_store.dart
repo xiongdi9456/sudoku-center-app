@@ -8,14 +8,14 @@ abstract class _BoardStore with Store{
   @observable
   ObservableList<CellStore> cellStoreList = new ObservableList<CellStore>();
   @observable
-  SelectedCellStore selectedCell = new SelectedCellStore(0, 1, 2);
+  SelectedCellStore selectedCell = new SelectedCellStore(0, 0, 0);
   @action
   addCell(int cellIndex, int rowIndex, int colIndex, int value){
-    this.cellStoreList.add(new CellStore(cellIndex, rowIndex, colIndex));
+    this.cellStoreList.add(new CellStore(cellIndex, rowIndex, colIndex, value));
   }
   @action
   selectCell(CellStore cellStore){
-    this.selectedCell = new SelectedCellStore(cellStore.cellIndex, cellStore.rowIndex, cellStore.colIndex);
+    this.selectedCell = new SelectedCellStore(cellStore.cellIndex, cellStore.colIndex, cellStore.rowIndex);
   }
   @action
   editSelectedCellValue(int newValue){

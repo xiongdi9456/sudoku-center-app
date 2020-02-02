@@ -4,10 +4,10 @@ part 'cell_store.g.dart';
 class CellStore = _CellStore with _$CellStore;
 
 abstract class _CellStore with Store{
-  _CellStore(this.cellIndex, this.rowIndex, this.colIndex);
+  _CellStore(this.cellIndex, this.rowIndex, this.colIndex, this.value);
 
   @observable
-  int value = 0;
+  int value;
   int rowIndex;
   int colIndex;
   int cellIndex;

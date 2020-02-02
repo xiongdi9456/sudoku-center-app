@@ -14,18 +14,18 @@ class Cell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: this.onCellTapped,
-      child: Container(
+        onTap: this.onCellTapped,
+        child: Container(
           decoration: BoxDecoration(
               color: this.getBackgroundColor,
               border: Border.all(color: this.getBorderColor, width: 1),
               borderRadius: this.getBorderRadius(
                   this.cellStore.rowIndex, this.cellStore.colIndex)),
-          child: Observer(
-              builder: (_) =>
-                  Text('${this.cellStore.value}')) //this.cellStore.value
-          ),
-    );
+          child: Center(
+              child: Observer(builder: (_) => cellBuilder(this.cellStore.value))
+              //this.cellStore.value
+              ),
+        ));
   }
 
   getBorderRadius(int rowIndex, int colIndex) {
@@ -42,20 +42,32 @@ class Cell extends StatelessWidget {
     }
   }
 
+  Widget cellBuilder(value) {
+    if (value == 0) {
+      // if value was 0 mean its empty cell and user
+      return Text('');
+    }
+    return Text('${value}');
+  }
+
   @computed
   get getBorderColor {
     if (this.selectedCellStore != null &&
         cellStore.cellIndex == this.selectedCellStore.cellIndex) {
-      return Colors.green;
+      return Color(0x66F3C2);
     }
     return Colors.grey;
   }
 
   @computed
   get getBackgroundColor {
-    if (this.selectedCellStore != null &&
-        cellStore.cellIndex == this.selectedCellStore.cellIndex) {
-      return Colors.yellow;
+    if (this.selectedCellStore != null) {
+      if (cellStore.cellIndex == this.selectedCellStore.cellIndex) {
+        return Colors.yellow;
+      }
+      if(cellStore.colIndex == this.selectedCellStore.colIndex || cellStore.rowIndex == this.selectedCellStore.rowIndex){
+        return Colors.blue;
+      }
     }
     return Colors.white;
   }
