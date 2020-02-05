@@ -9,7 +9,7 @@ class Cell extends StatelessWidget {
   final CellStore cellStore;
   final SelectedCellStore selectedCellStore;
   final void Function(CellStore cellStore) onSelectedCallBack;
-
+  static const valueTextStyle = TextStyle(fontSize:24);
   const Cell(this.cellStore, this.selectedCellStore, this.onSelectedCallBack);
   @override
   Widget build(BuildContext context) {
@@ -47,14 +47,14 @@ class Cell extends StatelessWidget {
       // if value was 0 mean its empty cell and user
       return Text('');
     }
-    return Text('${value}');
+    return Text('${value}', style: Cell.valueTextStyle,);
   }
 
   @computed
   get getBorderColor {
     if (this.selectedCellStore != null &&
         cellStore.cellIndex == this.selectedCellStore.cellIndex) {
-      return Color(0x66F3C2);
+      return Color.fromARGB(255,102,243,194);
     }
     return Colors.grey;
   }
