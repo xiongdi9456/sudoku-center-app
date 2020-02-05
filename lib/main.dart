@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'soduku center',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Sumsung-sharp-sans'
       ),
       home: MyHomePage(),
     );
@@ -27,9 +28,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('soduko center'),
-      ),
+      appBar: null,
       body: Center(
           child: Padding(
         padding: const EdgeInsets.all(8.0),

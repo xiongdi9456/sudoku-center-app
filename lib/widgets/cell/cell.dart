@@ -63,10 +63,10 @@ class Cell extends StatelessWidget {
   get getBackgroundColor {
     if (this.selectedCellStore != null) {
       if (cellStore.cellIndex == this.selectedCellStore.cellIndex) {
-        return Colors.yellow;
+        return Color.fromARGB(255,238,252,247);
       }
       if(cellStore.colIndex == this.selectedCellStore.colIndex || cellStore.rowIndex == this.selectedCellStore.rowIndex){
-        return Colors.blue;
+        return Color.fromARGB(255,238,239,242);
       }
     }
     return Colors.white;
