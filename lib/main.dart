@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'soduku center',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Sumsung-sharp-sans'
-      ),
+          primarySwatch: Colors.blue, fontFamily: 'Sumsung-sharp-sans'),
       home: MyHomePage(),
     );
   }
@@ -29,19 +27,25 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            Flexible(
-              child: AspectRatio(child: Board(gameStore.boardStore),aspectRatio: 1,),
-              flex: 2,
-            ),
-            Flexible(child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
-          ],
-        ),
-      )), // This trailing comma makes auto-formatting nicer for build methods.
+      body: SafeArea(
+        child: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Flexible(
+                child: AspectRatio(
+                  child: Board(gameStore.boardStore),
+                  aspectRatio: 1,
+                ),
+                flex: 2,
+              ),
+              Flexible(
+                  child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
+            ],
+          ),
+        )),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
