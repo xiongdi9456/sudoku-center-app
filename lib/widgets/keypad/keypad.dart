@@ -22,7 +22,10 @@ class Keypad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: buildGridView());
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0,16.0,0,0.16),
+          child: Center(child: buildGridView()),
+        ));
   }
   List<Widget> getButtonList(){
     return <Widget>[
@@ -42,8 +45,8 @@ class Keypad extends StatelessWidget {
     crossAxisCount: 5,
     staggeredTiles: _staggeredTiles,
     children: getButtonList(),
-    mainAxisSpacing: 4.0,
-    crossAxisSpacing: 4.0,
+    mainAxisSpacing: 16.0,
+    crossAxisSpacing: 16.0,
     padding: const EdgeInsets.all(4.0),
   );
   }

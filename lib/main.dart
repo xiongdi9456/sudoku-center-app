@@ -27,6 +27,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
+      backgroundColor: Color.fromARGB(255,225,227,227),
       body: SafeArea(
         child: Center(
             child: Padding(
