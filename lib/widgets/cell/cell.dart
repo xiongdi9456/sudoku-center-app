@@ -16,7 +16,7 @@ class Cell extends StatelessWidget {
   final CellStore cellStore;
   final SelectedCellStore selectedCellStore;
   final void Function(CellStore cellStore) onSelectedCallBack;
-  static const valueTextStyle = TextStyle(fontSize: 18);
+  static const valueTextStyle = TextStyle(fontSize: 18,color: Color(0xFF8DA1AE));
   const Cell(this.cellStore, this.selectedCellStore, this.onSelectedCallBack);
   @override
   Widget build(BuildContext context) {
