@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sudoko/widgets/keypad/action_key/action_key.dart';
 import 'package:sudoko/widgets/keypad/number_key/number_key.dart';
-import 'package:sudoko/widgets/keypad/skip_key/skip_key.dart';
+import 'package:sudoko/widgets/keypad/pause_key/pause_key.dart';
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
+  const StaggeredTile.count(1, 1),
+  const StaggeredTile.count(1, 1),
+  const StaggeredTile.count(1, 1),
+  const StaggeredTile.count(1, 1),
+  const StaggeredTile.count(1, 1),
   const StaggeredTile.count(1, 1),
   const StaggeredTile.count(1, 1),
   const StaggeredTile.count(1, 1),
@@ -18,7 +25,8 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 
 class Keypad extends StatelessWidget {
   final void Function(int value) onNumberKeyTapped;
-  const Keypad({this.onNumberKeyTapped});
+  final void Function() onResetKeyTapped;
+  const Keypad({this.onNumberKeyTapped, this.onResetKeyTapped});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +38,31 @@ class Keypad extends StatelessWidget {
 
   List<Widget> getButtonList() {
     return <Widget>[
+      ActionKey(
+        iconWidget: SvgPicture.asset('assets/images/icn_Restart.svg'),
+        onTap: this.onResetKeyTapped,
+        title: 'Restart',
+      ),
+      ActionKey(
+        iconWidget: SvgPicture.asset('assets/images/icn_Hint.svg'),
+        onTap: this.onResetKeyTapped,
+        title: 'Hint',
+      ),
+      ActionKey(
+        iconWidget: SvgPicture.asset('assets/images/icn_Note.svg'),
+        onTap: this.onResetKeyTapped,
+        title: 'Note',
+      ),
+      ActionKey(
+        iconWidget: SvgPicture.asset('assets/images/icn_Undo.svg'),
+        onTap: this.onResetKeyTapped,
+        title: 'Undo',
+      ),
+      ActionKey(
+        iconWidget: SvgPicture.asset('assets/images/icn_Erase.svg'),
+        onTap: this.onResetKeyTapped,
+        title: 'Erase',
+      ),
       NumberKey(1, this.onNumberKeyTapped),
       NumberKey(2, this.onNumberKeyTapped),
       NumberKey(3, this.onNumberKeyTapped),
@@ -39,7 +72,7 @@ class Keypad extends StatelessWidget {
       NumberKey(7, this.onNumberKeyTapped),
       NumberKey(8, this.onNumberKeyTapped),
       NumberKey(9, this.onNumberKeyTapped),
-      SkipKey(0, this.onNumberKeyTapped),
+      PauseKey(0, this.onNumberKeyTapped),
     ];
   }
 

@@ -64,7 +64,13 @@ flutter:
   fonts:
     - family: Sumsung-sharp-sans
       fonts:
-        - asset: assets/fonts/SamsungSharpSansRegular-Regular.ttf
+        - asset: assets/fonts/samsungsharpsans.otf
+          weight: 300
+        - asset: assets/fonts/samsungsharpsans-medium.otf
+          weight: 500
+        - asset: assets/fonts/samsungsharpsans-bold.otf
+          weight: 900
+        
      #  - asset: fonts/Schyler-Italic.ttf
      #     style: italic
     #- family: Trajan Pro

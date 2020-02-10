@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      backgroundColor: Color.fromARGB(255,225,227,227),
+      backgroundColor: Color(0xFFfdfdfd),
       body: SafeArea(
         child: Center(
             child: Padding(
@@ -52,5 +52,8 @@ class MyHomePage extends StatelessWidget {
 
   onNumberKeyTapped(int value) {
     gameStore.boardStore.editSelectedCellValue(value);
+  }
+  onResetKeyTapped(){
+
   }
 }
