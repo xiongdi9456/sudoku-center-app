@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:sudoko/widgets/board/selected_cell_store.dart';
 import 'package:sudoko/widgets/cell/cell_store.dart';
+import 'package:sudoko/widgets/cell/note_cell/note_cell.dart';
 
 class BorderColors {
   Color top;
@@ -42,7 +43,7 @@ class Cell extends StatelessWidget {
   }
   Widget getCellContent(_){
     if(cellStore.isNoteMode){
-      return Text('N');
+      return NoteCell(notes: this.cellStore.notes);
     }else{
       return Observer(builder: (_) => cellBuilder(this.cellStore.value));
     }
