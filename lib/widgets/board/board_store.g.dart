@@ -9,6 +9,13 @@ part of 'board_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$BoardStore on _BoardStore, Store {
+  Computed<CellStore> _$selectedCellStoreComputed;
+
+  @override
+  CellStore get selectedCellStore => (_$selectedCellStoreComputed ??=
+          Computed<CellStore>(() => super.selectedCellStore))
+      .value;
+
   final _$cellStoreListAtom = Atom(name: '_BoardStore.cellStoreList');
 
   @override
@@ -43,6 +50,23 @@ mixin _$BoardStore on _BoardStore, Store {
     }, _$selectedCellAtom, name: '${_$selectedCellAtom.name}_set');
   }
 
+  final _$isNoteModeAtom = Atom(name: '_BoardStore.isNoteMode');
+
+  @override
+  bool get isNoteMode {
+    _$isNoteModeAtom.context.enforceReadPolicy(_$isNoteModeAtom);
+    _$isNoteModeAtom.reportObserved();
+    return super.isNoteMode;
+  }
+
+  @override
+  set isNoteMode(bool value) {
+    _$isNoteModeAtom.context.conditionallyRunInAction(() {
+      super.isNoteMode = value;
+      _$isNoteModeAtom.reportChanged();
+    }, _$isNoteModeAtom, name: '${_$isNoteModeAtom.name}_set');
+  }
+
   final _$_BoardStoreActionController = ActionController(name: '_BoardStore');
 
   @override
@@ -70,6 +94,26 @@ mixin _$BoardStore on _BoardStore, Store {
     final _$actionInfo = _$_BoardStoreActionController.startAction();
     try {
       return super.editSelectedCellValue(newValue);
+    } finally {
+      _$_BoardStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic toggleNoteMode() {
+    final _$actionInfo = _$_BoardStoreActionController.startAction();
+    try {
+      return super.toggleNoteMode();
+    } finally {
+      _$_BoardStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic toggleSelectedCellNote(int value) {
+    final _$actionInfo = _$_BoardStoreActionController.startAction();
+    try {
+      return super.toggleSelectedCellNote(value);
     } finally {
       _$_BoardStoreActionController.endAction(_$actionInfo);
     }

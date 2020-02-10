@@ -9,6 +9,8 @@ abstract class _BoardStore with Store{
   ObservableList<CellStore> cellStoreList = new ObservableList<CellStore>();
   @observable
   SelectedCellStore selectedCell = new SelectedCellStore(0, 0, 0);
+  @observable
+  bool isNoteMode = false;
   @action
   addCell(int cellIndex, int rowIndex, int colIndex, int value){
     this.cellStoreList.add(new CellStore(cellIndex, rowIndex, colIndex, value));
@@ -17,9 +19,20 @@ abstract class _BoardStore with Store{
   selectCell(CellStore cellStore){
     this.selectedCell = new SelectedCellStore(cellStore.cellIndex, cellStore.colIndex, cellStore.rowIndex);
   }
+  @computed
+  CellStore get selectedCellStore{
+    return this.cellStoreList[this.selectedCell.cellIndex];
+  }
   @action
   editSelectedCellValue(int newValue){
-    var selectedCellStore = this.cellStoreList[this.selectedCell.cellIndex];
-    selectedCellStore.setValue(newValue);
+    this.selectedCellStore.setValue(newValue);
+  }
+  @action 
+  toggleNoteMode(){
+    this.isNoteMode = !this.isNoteMode;
+  }
+  @action
+  toggleSelectedCellNote(int value){
+    this.selectedCellStore.toggleNote(value);
   }
 }

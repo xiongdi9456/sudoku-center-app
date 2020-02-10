@@ -51,7 +51,11 @@ class MyHomePage extends StatelessWidget {
   }
 
   onNumberKeyTapped(int value) {
+    if(gameStore.boardStore.isNoteMode){
+      gameStore.boardStore.toggleSelectedCellNote(value);
+    }else{
     gameStore.boardStore.editSelectedCellValue(value);
+    }
   }
   onResetKeyTapped(){
 
@@ -60,10 +64,11 @@ class MyHomePage extends StatelessWidget {
 
   }
   onEraseKeyTapped(){
-
+    //todo check if the vaalue is not initialized by app
+    this.onNumberKeyTapped(0);
   }
   onNotesKeyTapped(){
-
+    gameStore.boardStore.toggleNoteMode();
   }
   onUndoKeyTapped(){
 

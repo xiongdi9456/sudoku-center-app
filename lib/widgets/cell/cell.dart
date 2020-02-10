@@ -35,12 +35,18 @@ class Cell extends StatelessWidget {
             //     this.cellStore.rowIndex, this.cellStore.colIndex)
           ),
           child: Center(
-              child: Observer(builder: (_) => cellBuilder(this.cellStore.value))
+              child: Observer(builder: (_) => getCellContent(_))
               //this.cellStore.value
               ),
         ));
   }
-
+  Widget getCellContent(_){
+    if(cellStore.isNoteMode){
+      return Text('N');
+    }else{
+      return Observer(builder: (_) => cellBuilder(this.cellStore.value));
+    }
+  }
   getBorderRadius(int rowIndex, int colIndex) {
     if (rowIndex == 1 && colIndex == 1) {
       return BorderRadius.only(topLeft: Radius.circular(20));

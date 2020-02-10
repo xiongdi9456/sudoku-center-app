@@ -55,7 +55,7 @@ class Keypad extends StatelessWidget {
       ),
       ActionKey(
         iconWidget: SvgPicture.asset('assets/images/icn_Note.svg'),
-        onTap: this.onResetKeyTapped,
+        onTap: this.onNoteKeyTapped,
         title: 'Note',
       ),
       ActionKey(
