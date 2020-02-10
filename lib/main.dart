@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
                 flex: 2,
               ),
               Flexible(
-                  child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped)),
+                  child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped,onEraseKeyTapped: this.onEraseKeyTapped,onHintKeyTapped: this.onHintKeyTapped, onNoteKeyTapped: this.onNotesKeyTapped, onResetKeyTapped: this.onResetKeyTapped, onUndoKeyTapped: this.onUndoKeyTapped,)),
             ],
           ),
         )),
@@ -54,6 +54,18 @@ class MyHomePage extends StatelessWidget {
     gameStore.boardStore.editSelectedCellValue(value);
   }
   onResetKeyTapped(){
+
+  }
+  onHintKeyTapped(){
+
+  }
+  onEraseKeyTapped(){
+
+  }
+  onNotesKeyTapped(){
+
+  }
+  onUndoKeyTapped(){
 
   }
 }

@@ -26,7 +26,12 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 class Keypad extends StatelessWidget {
   final void Function(int value) onNumberKeyTapped;
   final void Function() onResetKeyTapped;
-  const Keypad({this.onNumberKeyTapped, this.onResetKeyTapped});
+  final void Function() onHintKeyTapped;
+  final void Function() onNoteKeyTapped;
+  final void Function() onUndoKeyTapped;
+  final void Function() onEraseKeyTapped;
+
+  const Keypad({this.onNumberKeyTapped, this.onResetKeyTapped, this.onHintKeyTapped, this.onNoteKeyTapped, this.onUndoKeyTapped, this.onEraseKeyTapped});
   @override
   Widget build(BuildContext context) {
     return Container(
