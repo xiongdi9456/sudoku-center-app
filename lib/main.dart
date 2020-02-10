@@ -42,7 +42,14 @@ class MyHomePage extends StatelessWidget {
                 flex: 2,
               ),
               Flexible(
-                  child: Keypad(onNumberKeyTapped: this.onNumberKeyTapped,onEraseKeyTapped: this.onEraseKeyTapped,onHintKeyTapped: this.onHintKeyTapped, onNoteKeyTapped: this.onNotesKeyTapped, onResetKeyTapped: this.onResetKeyTapped, onUndoKeyTapped: this.onUndoKeyTapped,)),
+                  child: Keypad(
+                onNumberKeyTapped: this.onNumberKeyTapped,
+                onEraseKeyTapped: this.onEraseKeyTapped,
+                onHintKeyTapped: this.onHintKeyTapped,
+                onNoteKeyTapped: this.onNotesKeyTapped,
+                onResetKeyTapped: this.onResetKeyTapped,
+                onUndoKeyTapped: this.onUndoKeyTapped,
+              )),
             ],
           ),
         )),
@@ -51,26 +58,23 @@ class MyHomePage extends StatelessWidget {
   }
 
   onNumberKeyTapped(int value) {
-    if(gameStore.boardStore.isNoteMode){
+    if (gameStore.boardStore.isNoteMode) {
       gameStore.boardStore.toggleSelectedCellNote(value);
-    }else{
-    gameStore.boardStore.editSelectedCellValue(value);
+    } else {
+      gameStore.boardStore.editSelectedCellValue(value);
     }
   }
-  onResetKeyTapped(){
 
-  }
-  onHintKeyTapped(){
-
-  }
-  onEraseKeyTapped(){
+  onResetKeyTapped() {}
+  onHintKeyTapped() {}
+  onEraseKeyTapped() {
     //todo check if the vaalue is not initialized by app
     this.onNumberKeyTapped(0);
   }
-  onNotesKeyTapped(){
+
+  onNotesKeyTapped() {
     gameStore.boardStore.toggleNoteMode();
   }
-  onUndoKeyTapped(){
 
-  }
+  onUndoKeyTapped() {}
 }
