@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sudoko/screens/game/game_store.dart';
+import 'package:sudoko/widgets/header/header.dart';
 import 'package:sudoko/widgets/keypad/keypad.dart';
 import './widgets/cell/cell_store.dart';
 import './widgets/board/board.dart';
@@ -34,6 +35,7 @@ class MyHomePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
+              Header(),
               Flexible(
                 child: AspectRatio(
                   child: Board(gameStore.boardStore),
