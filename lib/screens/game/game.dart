@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sudoko/widgets/board/board.dart';
+import 'package:sudoko/widgets/drawer/drawer.dart';
 import 'package:sudoko/widgets/header/header.dart';
 import 'package:sudoko/widgets/keypad/keypad.dart';
 import 'game_store.dart';
@@ -7,11 +8,14 @@ import 'game_store.dart';
 final gameStore = new GameStore();
 
 class MyHomePage extends StatelessWidget {
+  final GlobalKey scaffoldKey = new GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
+      drawer: Drawer(child:GameDrawer(),),
       backgroundColor: Color(0xFFfdfdfd),
+      key:scaffoldKey,
       body: SafeArea(
         child: Center(
             child: Padding(
@@ -60,6 +64,5 @@ class MyHomePage extends StatelessWidget {
   onNotesKeyTapped() {
     gameStore.boardStore.toggleNoteMode();
   }
-
   onUndoKeyTapped() {}
 }
