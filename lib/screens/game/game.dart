@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:sudoko/widgets/board/board.dart';
 import 'package:sudoko/widgets/drawer/drawer.dart';
 import 'package:sudoko/widgets/header/header.dart';
@@ -13,9 +14,15 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      drawer: Drawer(child:GameDrawer(),),
+      drawer: Observer(
+        builder: (_) => Drawer(
+            child: GameDrawer(
+          setDarkMode: gameStore.setDarkMode,
+          isDarkMode: gameStore.isDarkMode,
+        )),
+      ),
       backgroundColor: Color(0xFFfdfdfd),
-      key:scaffoldKey,
+      key: scaffoldKey,
       body: SafeArea(
         child: Center(
             child: Padding(
@@ -64,5 +71,6 @@ class MyHomePage extends StatelessWidget {
   onNotesKeyTapped() {
     gameStore.boardStore.toggleNoteMode();
   }
+
   onUndoKeyTapped() {}
 }
