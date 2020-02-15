@@ -25,33 +25,4 @@ mixin _$GameStore on _GameStore, Store {
       _$boardStoreAtom.reportChanged();
     }, _$boardStoreAtom, name: '${_$boardStoreAtom.name}_set');
   }
-
-  final _$isDarkModeAtom = Atom(name: '_GameStore.isDarkMode');
-
-  @override
-  bool get isDarkMode {
-    _$isDarkModeAtom.context.enforceReadPolicy(_$isDarkModeAtom);
-    _$isDarkModeAtom.reportObserved();
-    return super.isDarkMode;
-  }
-
-  @override
-  set isDarkMode(bool value) {
-    _$isDarkModeAtom.context.conditionallyRunInAction(() {
-      super.isDarkMode = value;
-      _$isDarkModeAtom.reportChanged();
-    }, _$isDarkModeAtom, name: '${_$isDarkModeAtom.name}_set');
-  }
-
-  final _$_GameStoreActionController = ActionController(name: '_GameStore');
-
-  @override
-  dynamic setDarkMode(bool value) {
-    final _$actionInfo = _$_GameStoreActionController.startAction();
-    try {
-      return super.setDarkMode(value);
-    } finally {
-      _$_GameStoreActionController.endAction(_$actionInfo);
-    }
-  }
 }

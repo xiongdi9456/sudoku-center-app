@@ -8,12 +8,4 @@ abstract class _GameStore with Store{
 
   @observable
   BoardStore boardStore = new BoardStore();
-
-  @observable
-  bool isDarkMode = false;
-
-  @action 
-  setDarkMode(bool value){
-    this.isDarkMode = value;
-  }
 }

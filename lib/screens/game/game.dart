@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:sudoko/app_store.dart';
 import 'package:sudoko/widgets/board/board.dart';
 import 'package:sudoko/widgets/drawer/drawer.dart';
 import 'package:sudoko/widgets/header/header.dart';
 import 'package:sudoko/widgets/keypad/keypad.dart';
-import 'game_store.dart';
-
-final gameStore = new GameStore();
 
 class MyHomePage extends StatelessWidget {
   final GlobalKey scaffoldKey = new GlobalKey();
+  final AppStore appStore;
+  MyHomePage({this.appStore});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +17,8 @@ class MyHomePage extends StatelessWidget {
       drawer: Observer(
         builder: (_) => Drawer(
             child: GameDrawer(
-          setDarkMode: gameStore.setDarkMode,
-          isDarkMode: gameStore.isDarkMode,
+          setDarkMode: appStore.setDarkMode,
+          isDarkMode: appStore.isDarkMode,
         )),
       ),
       backgroundColor: Color(0xFFfdfdfd),
@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
               Header(),
               Flexible(
                 child: AspectRatio(
-                  child: Board(gameStore.boardStore),
+                  child: Board(appStore.gameStore.boardStore),
                   aspectRatio: 1,
                 ),
                 flex: 2,
@@ -54,10 +54,10 @@ class MyHomePage extends StatelessWidget {
   }
 
   onNumberKeyTapped(int value) {
-    if (gameStore.boardStore.isNoteMode) {
-      gameStore.boardStore.toggleSelectedCellNote(value);
+    if (appStore.gameStore.boardStore.isNoteMode) {
+      appStore.gameStore.boardStore.toggleSelectedCellNote(value);
     } else {
-      gameStore.boardStore.editSelectedCellValue(value);
+      appStore.gameStore.boardStore.editSelectedCellValue(value);
     }
   }
 
@@ -69,7 +69,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   onNotesKeyTapped() {
-    gameStore.boardStore.toggleNoteMode();
+    appStore.gameStore.boardStore.toggleNoteMode();
   }
 
   onUndoKeyTapped() {}
