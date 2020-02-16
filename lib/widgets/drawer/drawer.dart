@@ -22,8 +22,8 @@ class GameDrawer extends StatelessWidget {
                   Text('Dark Theme'),
                   Switch(
                     value: isDarkMode,
-                    onChanged: setDarkMode,
-                    activeColor: Color(0xFF3BC995),
+                    onChanged: (value){this.onDarkModeChanged(value,context);},
+                    activeColor: Theme.of(context).backgroundColor,
                   ),
                 ],
               ),
@@ -32,5 +32,9 @@ class GameDrawer extends StatelessWidget {
         ),
       ),
     );
+  }
+  onDarkModeChanged(newValue,context){
+    Navigator.pop(context);
+    this.setDarkMode(newValue);
   }
 }

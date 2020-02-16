@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
           isDarkMode: appStore.isDarkMode,
         )),
       ),
-      backgroundColor: Color(0xFFfdfdfd),
+      backgroundColor:  Theme.of(context).backgroundColor,
       key: scaffoldKey,
       body: SafeArea(
         child: Center(

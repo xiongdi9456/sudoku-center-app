@@ -14,6 +14,7 @@ abstract class _AppStore with Store{
 
   @action 
   setDarkMode(bool value){
-    this.isDarkMode = value;
+    Future.delayed(Duration.zero, () => this.isDarkMode = value);
+    
   }
 }
