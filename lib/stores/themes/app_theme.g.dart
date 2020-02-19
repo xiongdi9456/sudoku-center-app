@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_store.dart';
+part of 'app_theme.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,25 +8,14 @@ part of 'app_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$AppStore on _AppStore, Store {
-  final _$gameStoreAtom = Atom(name: '_AppStore.gameStore');
+mixin _$AppTheme on _AppTheme, Store {
+  Computed<ThemeBase> _$themeComputed;
 
   @override
-  GameStore get gameStore {
-    _$gameStoreAtom.context.enforceReadPolicy(_$gameStoreAtom);
-    _$gameStoreAtom.reportObserved();
-    return super.gameStore;
-  }
+  ThemeBase get theme =>
+      (_$themeComputed ??= Computed<ThemeBase>(() => super.theme)).value;
 
-  @override
-  set gameStore(GameStore value) {
-    _$gameStoreAtom.context.conditionallyRunInAction(() {
-      super.gameStore = value;
-      _$gameStoreAtom.reportChanged();
-    }, _$gameStoreAtom, name: '${_$gameStoreAtom.name}_set');
-  }
-
-  final _$isDarkModeAtom = Atom(name: '_AppStore.isDarkMode');
+  final _$isDarkModeAtom = Atom(name: '_AppTheme.isDarkMode');
 
   @override
   bool get isDarkMode {
@@ -43,15 +32,15 @@ mixin _$AppStore on _AppStore, Store {
     }, _$isDarkModeAtom, name: '${_$isDarkModeAtom.name}_set');
   }
 
-  final _$_AppStoreActionController = ActionController(name: '_AppStore');
+  final _$_AppThemeActionController = ActionController(name: '_AppTheme');
 
   @override
   dynamic setDarkMode(bool value) {
-    final _$actionInfo = _$_AppStoreActionController.startAction();
+    final _$actionInfo = _$_AppThemeActionController.startAction();
     try {
       return super.setDarkMode(value);
     } finally {
-      _$_AppStoreActionController.endAction(_$actionInfo);
+      _$_AppThemeActionController.endAction(_$actionInfo);
     }
   }
 }

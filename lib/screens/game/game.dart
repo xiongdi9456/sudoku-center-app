@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:sudoko/app_store.dart';
+import 'package:sudoko/stores/app_store.dart';
 import 'package:sudoko/widgets/board/board.dart';
 import 'package:sudoko/widgets/drawer/drawer.dart';
 import 'package:sudoko/widgets/header/header.dart';
@@ -17,8 +17,8 @@ class MyHomePage extends StatelessWidget {
       drawer: Observer(
         builder: (_) => Drawer(
             child: GameDrawer(
-          setDarkMode: appStore.setDarkMode,
-          isDarkMode: appStore.isDarkMode,
+          setDarkMode: appStore.appTheme.setDarkMode,
+          isDarkMode: appStore.appTheme.isDarkMode,
         )),
       ),
       backgroundColor:  Theme.of(context).backgroundColor,
@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
               Header(),
               Flexible(
                 child: AspectRatio(
-                  child: Board(appStore.gameStore.boardStore),
+                  child: Board(appTheme: appStore.appTheme,boardStore: appStore.gameStore.boardStore,),
                   aspectRatio: 1,
                 ),
                 flex: 2,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:sudoko/stores/themes/app_theme.dart';
 import 'package:sudoko/utils/sudoku_helper.dart';
 import 'package:sudoko/widgets/cell/cell.dart';
 import 'package:sudoko/widgets/cell/cell_store.dart';
@@ -8,8 +9,9 @@ import 'board_store.dart';
 
 class Board extends StatelessWidget {
   final BoardStore boardStore;
+  final AppTheme appTheme;
   final SudokoHelper sudokoHelper = new SudokoHelper();
-  Board(this.boardStore) {
+  Board({this.boardStore, this.appTheme}) {
     this.sudokoHelper.createBoard();
     for (int r = 1; r <= 9; r++) {
       for (int c = 1; c <= 9; c++) {
@@ -39,7 +41,7 @@ class Board extends StatelessWidget {
   createCell(CellStore cellStore) {
     return Observer(
         builder: (_) =>
-            Cell(cellStore, boardStore.selectedCell, this.onCellSelected));
+           Cell(cellStore: cellStore, onSelectedCallBack:this.onCellSelected , selectedCellStore: boardStore.selectedCell, cellTheme: this.appTheme.theme.cell,));
   }
 
   onCellSelected(CellStore cellStore) {

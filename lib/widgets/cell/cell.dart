@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
+import 'package:sudoko/stores/themes/theme_base.dart';
 import 'package:sudoko/widgets/board/selected_cell_store.dart';
 import 'package:sudoko/widgets/cell/cell_store.dart';
 import 'package:sudoko/widgets/cell/note_cell/note_cell.dart';
@@ -17,8 +18,8 @@ class Cell extends StatelessWidget {
   final CellStore cellStore;
   final SelectedCellStore selectedCellStore;
   final void Function(CellStore cellStore) onSelectedCallBack;
-  static const valueTextStyle = TextStyle(fontSize: 18,color: Color(0xFF8DA1AE));
-  const Cell(this.cellStore, this.selectedCellStore, this.onSelectedCallBack);
+  final CellTheme cellTheme;
+  const Cell({this.cellStore, this.selectedCellStore, this.onSelectedCallBack, this.cellTheme});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,6 +41,9 @@ class Cell extends StatelessWidget {
               //this.cellStore.value
               ),
         ));
+  }
+  TextStyle get valueTextStyle{
+    return TextStyle(fontSize: 18,color:this.cellTheme.textColor);
   }
   Widget getCellContent(_){
     if(cellStore.isNoteMode){
@@ -68,8 +72,8 @@ class Cell extends StatelessWidget {
       return Text('');
     }
     return Text(
-      '${value}',
-      style: Cell.valueTextStyle,
+      '$value',
+      style: this.valueTextStyle,
     );
   }
 
@@ -114,14 +118,14 @@ class Cell extends StatelessWidget {
   get getBackgroundColor {
     if (this.selectedCellStore != null) {
       if (cellStore.cellIndex == this.selectedCellStore.cellIndex) {
-        return Color.fromARGB(255, 238, 252, 247);
+        return this.cellTheme.selectedBackground;
       }
       if (cellStore.colIndex == this.selectedCellStore.colIndex ||
           cellStore.rowIndex == this.selectedCellStore.rowIndex) {
-        return Color.fromARGB(255, 238, 239, 242);
+        return this.cellTheme.selectedColumnRowBackground;
       }
     }
-    return Colors.white;
+    return this.cellTheme.background;
   }
 
   onCellTapped() {
